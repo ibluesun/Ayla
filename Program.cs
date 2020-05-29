@@ -15,12 +15,6 @@ namespace Ayla
             return false;
         }
 
-        static float UnderRoot(float a, float b, float c)
-        {
-            double uroot = b * b - (4 * a * c);
-            return (float)uroot;
-        }
-
         static void Main(string[] args)
         {
             Console.WriteLine($"Reading Input file {args[0]} ...");
@@ -82,7 +76,7 @@ namespace Ayla
                 {
                     byte channel1 = 0;
                     byte channel2 = 0;
-                    byte channel3 = 20;   // water level;
+                    byte channel3 = 5;   // water level;
 
                     float h = rawMatrix[ix, iy];
 
