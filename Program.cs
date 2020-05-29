@@ -123,7 +123,6 @@ namespace Ayla
             File.WriteAllBytes(args[0] + ".raw", file.ToArray());
 
             Console.WriteLine(args[0] + ".raw generated");
-
         }
     }
 }
