@@ -86,7 +86,7 @@ namespace Ayla
                     {
                         //var x = (float)(h / (1 + (Math.Pow(2, n) / 128)));
                         var x = (float)(h / (1f + (y / 128f)));
-                        if (x.NearlyEqual((float)Math.Round(x), 0.1f))
+                        if (x.NearlyEqual((float)Math.Round(x), 0.05f))
                         {
                             // found a nearly integer x
                             channel1 = (byte)Math.Round(x);
