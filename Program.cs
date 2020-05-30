@@ -80,28 +80,35 @@ namespace Ayla
 
                     float h = rawMatrix[ix, iy];
 
-                    bool solutionFound = false;
-                    //for(int n = 0; n < 9; n++)
-                    for(int y = 0; y < 256; y++)
+                    if (h < 255)
                     {
-                        //var x = (float)(h / (1 + (Math.Pow(2, n) / 128)));
-                        var x = (float)(h / (1f + (y / 128f)));
-                        if (x.NearlyEqual((float)Math.Round(x), 0.05f))
+                        channel1 = (byte)Math.Round(h);
+                        channel2 = 1;
+                    }
+                    else
+                    {
+                        bool solutionFound = false;
+                        //for(int n = 0; n < 9; n++)
+                        for (int y = 0; y < 256; y++)
                         {
-                            // found a nearly integer x
-                            channel1 = (byte)Math.Round(x);
-                            //channel2 = (byte) Math.Pow(2, n);
-                            channel2 = (byte)y;
+                            //var x = (float)(h / (1 + (Math.Pow(2, n) / 128)));
+                            var x = (float)(h / (1f + (y / 128f)));
+                            if (x.NearlyEqual((float)Math.Round(x), 0.05f))
+                            {
+                                // found a nearly integer x
+                                channel1 = (byte)Math.Round(x);
+                                //channel2 = (byte) Math.Pow(2, n);
+                                channel2 = (byte)y;
 
-                            solutionFound = true;
-                            break;
+                                solutionFound = true;
+                                break;
+                            }
+
+                            //throw new Exception("Can't find sutiable value");
                         }
 
-                        //throw new Exception("Can't find sutiable value");
+                        if (!solutionFound) throw new Exception("Solution not found");
                     }
-
-                    if (!solutionFound) throw new Exception("Solution not found");
-
                     file.Add(channel1);
                     file.Add(channel2);
                     file.Add(channel3);
